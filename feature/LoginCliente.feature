@@ -36,7 +36,7 @@ And vejo a mensagem "Bem-vindo, [nome do usuário] e as opções de comida"
    Given que o cliente está na página de login
    When o cliente clica em "Esqueceu a senha?"
    And insere seu endereço de email registrado
-   And clica no botão "Enviar"
+   And finaliza a operação de preenchimento clicando no botão "Enviar"
    Then o cliente  recebe um email com um link para redefinir sua senha
    And o cliente clica no link enviado por email
    And o cliente é redirecionado para a página de redefinição de senha
