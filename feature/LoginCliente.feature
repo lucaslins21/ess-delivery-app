@@ -50,7 +50,7 @@ And vejo a mensagem "Bem-vindo, [nome do usuário] e as opções de comida"
     Given que o cliente está na página de login
     When o cliente seleciona a opção de "Esqueceu a senha?"
     And insere um endereço de email inválido
-    And  confirma a operação e clica no botão "Enviar"
+    And  confirma a operação clicando no botão "Enviar"
     Then o cliente deve ver a mensagem de erro "Endereço de email inválido. Por favor, insira um endereço de email válido."
 
   # Cenário: Cliente não recebe email de redefinição de senha
