@@ -37,9 +37,9 @@ And vejo a mensagem "Bem-vindo, [nome do usuário] e as opções de comida"
    When o cliente clica em "Esqueceu a senha?"
    And insere seu endereço de email registrado
    And clica no botão "Enviar"
-   Then o cliente deve receber um email com um link para redefinir sua senha
-   And o cliente deve clicar no link enviado por email
-   And deve ser redirecionado para a página de redefinição de senha
+   Then o cliente  recebe um email com um link para redefinir sua senha
+   And o cliente clica no link enviado por email
+   And o cliente é redirecionado para a página de redefinição de senha
    And deve inserir uma nova senha segura
    And Confirmo a operação
    Then o cliente deve ver a mensagem "Sua senha foi alterada com sucesso."
@@ -48,7 +48,7 @@ And vejo a mensagem "Bem-vindo, [nome do usuário] e as opções de comida"
   # Cenário: Cliente insere email inválido na recuperação de senha
   
     Given que o cliente está na página de login
-    When o cliente clica em "Esqueceu a senha?"
+    When o cliente seleciona a opção de "Esqueceu a senha?"
     And insere um endereço de email inválido
     And  confirma a operação e clica no botão "Enviar"
     Then o cliente deve ver a mensagem de erro "Endereço de email inválido. Por favor, insira um endereço de email válido."
