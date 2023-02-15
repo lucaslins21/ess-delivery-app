@@ -7,8 +7,8 @@ So that eu possa acessar as funcionalidades internas do sistema
 Given  eu estou na página de login do site de delivery
 When eu insiro meu email e senha corretamente
 And clico em "login"
-Then eu sou redirecionado para a página inicial do meu perfil
-And vejo a mensagem "Bem-vindo, [nome do usuário]"
+Then eu sou redirecionado para a página inicial do cardápio
+And vejo a mensagem "Bem-vindo, [nome do usuário] e as opções de comida"
 
 # Cenário: Login com email inválido
 
@@ -43,9 +43,9 @@ And vejo a mensagem "Bem-vindo, [nome do usuário]"
    And deve inserir uma nova senha segura
    And clica no botão "Confirmar"
    Then o cliente deve ver a mensagem "Sua senha foi alterada com sucesso."
-   And deve ser redirecionado para a página de login
+   And o cliente é redirecionado para a página de login
 
-  # Cenário: Cliente insere email inválido
+  # Cenário: Cliente insere email inválido na recuperação de senha
   
     Given que o cliente está na página de login
     When o cliente clica em "Esqueceu a senha?"
@@ -59,4 +59,4 @@ And vejo a mensagem "Bem-vindo, [nome do usuário]"
     When o cliente insere um endereço de email registrado
     And clica no botão "Enviar"
     Then o cliente deve ver a mensagem "Um email de redefinição de senha foi enviado para o seu endereço de email."
-    And o cliente não deve receber nenhum email de redefinição de senha
+    And o cliente não recebeu nenhum email de redefinição de senha
