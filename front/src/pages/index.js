@@ -1,1 +1,4 @@
-export { Home } from './Home';
+import { Home } from './Home';
+import { EditarPerfil } from './EditarPerfil';
+
+export { Home, EditarPerfil };

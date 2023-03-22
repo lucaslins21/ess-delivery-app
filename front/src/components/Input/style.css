@@ -1,0 +1,29 @@
+input {
+    font-family: 'Hind Guntur', sans-serif;
+    color: #161616;
+    padding: 10px;
+    border: none;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+    width: 100%;
+}
+
+input:focus {
+    outline: 0;
+    border: none;
+}
+
+.titulo {
+    font-family: 'Hind Guntur', sans-serif;
+    font-size: 18px;
+    color: #FFA500;
+    text-align: start;
+    margin: 0;
+}
+
+::-webkit-input-placeholder {
+    color: #DADADA;
+ }
+ 
+.ContainerInput {
+    width: 100%;
+}
