@@ -6,11 +6,12 @@ export const Input = (props) => {
         <div className="ContainerInput">
             <h1 className="titulo">{props.titulo}</h1>
             <input 
-                style={{width: props.width}}
                 placeholder={props?.placeholder}
                 value={props?.value}
                 onChange={props?.onChange}
+                disabled={props.disabled}
             >{props?.text}</input>
+            <p className="ErrorMessage">{props.error}</p>
        </div>
     )
 }

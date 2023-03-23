@@ -13,21 +13,25 @@ export const EditarPerfil = () => {
   const [endereco, setEndereco] = useState('');
   const [complemento, setComplemento] = useState('');
   const [pontoRef, setPontoRef] = useState('');
+  const [editar, setEditar] = useState(false);
 
   return (
     <div className="Page">
       <div className="ContainerForm">
-        <h1>PERFIL</h1>
-        <Botao 
-          width={150}
-          text='EDITAR'
-          backgroundColor='#FF9D01'
-          color='#FFF2DE'
-        />
+        <div className="ContainerTitulo">
+          <div style={{width: 200}}></div>
+          <h1>PERFIL</h1>
+          <Botao 
+            width={150}
+            text='EDITAR'
+            backgroundColor='#FF9D01'
+            color='#FFF2DE'
+            onClick={() => setEditar(true)}
+          />
+        </div>
 
         <div className="Inline">
           <Input
-            width='90%'
             titulo='Nome'
             placeholder='Nome'
             value={nome}
@@ -35,61 +39,47 @@ export const EditarPerfil = () => {
           />
 
           <Input
-            width='90%'
             titulo='CPF'
             placeholder='CPF'
             value={cpf}
             onChange={(e) => setCPF(e.target.value)}
           />
+        </div>
 
+        <div className="Inline">
           <Input
-            width='90%'
             titulo='Telefone'
             placeholder='Telefone'
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
           />
-        </div>
 
-        <div className="Inline">
           <Input
-            width='50%'
             titulo='Email'
             placeholder='Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+        </div>
 
+        <div className="Inline">
           <Input
-            width='50%'
             titulo='Senha'
             placeholder='Senha'
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
           />
-        </div>
 
-        <div className="Inline">
           <Input
-            width='50%'
             titulo='Confirmar Senha'
             placeholder='Confirmar Senha'
             value={confirmarSenha}
             onChange={(e) => setConfirmarSenha(e.target.value)}
           />
-
-          <Input
-            width='50%'
-            titulo='Senha'
-            placeholder='Senha'
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
         </div>
 
         <div className="Inline">
           <Input
-            width='30%'
             titulo='Endereço'
             placeholder='Endereço'
             value={endereco}
@@ -97,7 +87,6 @@ export const EditarPerfil = () => {
           />
 
           <Input
-            width='30%'
             titulo='Complemento'
             placeholder='Complemento'
             value={complemento}
@@ -105,7 +94,6 @@ export const EditarPerfil = () => {
           />
 
           <Input
-            width='30%'
             titulo='Ponto de Referência'
             placeholder='Ponto de Referência'
             value={pontoRef}
@@ -113,12 +101,39 @@ export const EditarPerfil = () => {
           />
         </div>
         
-        <Botao 
-          width={150}
-          text='Deletar conta'
-          backgroundColor='#DD1C1A'
-          color='#FFF2DE'
-        />
+        <div className="ContainerButtonDeletar">
+          <div style={{marginLeft: 18}}>
+            <Botao 
+              width={150}
+              text='Deletar conta'
+              backgroundColor='#DD1C1A'
+              color='#FFF2DE'
+            />
+          </div>
+
+          { editar && (
+            <Botao 
+            width={150}
+            text='Salvar'
+            backgroundColor='#FF9D01'
+            color='#FFF2DE'
+          />
+          )}
+
+
+          { editar && (
+            <div style={{marginRight: 18}}>
+              <Botao 
+                width={150}
+                text='Cancelar'
+                backgroundColor='transparent'
+                color='#FF9D01'
+                border='2px solid #FF9D01'
+                onClick={() => setEditar(false)}
+              />
+          </div>
+          )}
+        </div>
       </div>
     </div>
   )

@@ -10,7 +10,19 @@
     width: 90%;
     background-color: #FFF2DA;
     border-radius: 8px;
-    padding: 16px;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ContainerTitulo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 35px;
 }
 
 h1 {
@@ -24,4 +36,12 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.ContainerButtonDeletar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px;
 }

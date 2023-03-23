@@ -4,7 +4,7 @@ import './style.css';
 
 export const Home = () => {
     return (
-        <div>
+        <div className="Container">
             <img src={Logo} alt="Logo" width={600}/>
             <h1>Em construção...</h1>
         </div>
