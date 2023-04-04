@@ -21,6 +21,15 @@ export default class UsuarioController implements Crud {
         return response.status(httpStatus).send(values);
     }
 
+    async getById(request: Request, response: Response){
+        const { id } = request.params;
+        const {value: usuarioNaoEncontrado, message } = await BuchoCheio.findByID(Usuario, id); 
+           
+        if(!usuarioNaoEncontrado) return response.status(400).send([]);
+
+        return response.status(200).send(usuarioNaoEncontrado);
+    }
+
     async delete(request: Request, response: Response){
         const { id } = request.params;
         const {value: usuarioNaoEncontrado, message } = await BuchoCheio.findByID(Usuario, id); 
