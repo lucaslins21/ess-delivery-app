@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Botao } from "../../components/Botao";
 import { Input } from '../../components/Input';
+import axios from 'axios';
 import './style.css';
 
 export const EditarPerfil = () => {
@@ -15,6 +16,39 @@ export const EditarPerfil = () => {
   const [pontoRef, setPontoRef] = useState('');
   const [editar, setEditar] = useState(false);
 
+  useEffect(() => {
+    axios.get('http://localhost:3001/usuario/2')
+      .then((response) => {
+        setNome(response.data.nome);
+        setCPF(response.data.cpf);
+        setEmail(response.data.email);
+        setTelefone(response.data.telefone);
+        setSenha(response.data.senha);
+        setConfirmarSenha(response.data.senha);
+        setEndereco(response.data.endereco);
+        setComplemento(response.data.complemento);
+        setPontoRef(response.data.pontoRef);
+      })
+  }, [])
+
+  const atualizarPerfil = () => {
+    axios.put('http://localhost:3001/usuario/2', {
+      nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
+    }).then((response) => {
+      console.log(response);
+      setEditar(false);
+    })
+  }
+
+  const deletarPerfil = () => {
+    axios.delete('http://localhost:3001/usuario/2', {
+      nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
+    }).then((response) => {
+      console.log(response);
+      setEditar(false);
+    })
+  }
+
   return (
     <div className="Page">
       <div className="ContainerForm">
@@ -27,6 +61,9 @@ export const EditarPerfil = () => {
             backgroundColor='#FF9D01'
             color='#FFF2DE'
             onClick={() => setEditar(true)}
+            backgroundColorHover='#FFF2DE'
+            colorHover='#FF9D01'
+            borderHover='2px solid #FF9D01'
           />
         </div>
 
@@ -67,12 +104,14 @@ export const EditarPerfil = () => {
             titulo='Senha'
             placeholder='Senha'
             value={senha}
+            senha
             onChange={(e) => setSenha(e.target.value)}
           />
 
           <Input
             titulo='Confirmar Senha'
             placeholder='Confirmar Senha'
+            senha
             value={confirmarSenha}
             onChange={(e) => setConfirmarSenha(e.target.value)}
           />
@@ -108,6 +147,10 @@ export const EditarPerfil = () => {
               text='Deletar conta'
               backgroundColor='#DD1C1A'
               color='#FFF2DE'
+              backgroundColorHover='#FFF2DE'
+              colorHover='#DD1C1A'
+              borderHover='2px solid #DD1C1A'
+              onClick={() => deletarPerfil()}
             />
           </div>
 
@@ -117,9 +160,12 @@ export const EditarPerfil = () => {
             text='Salvar'
             backgroundColor='#FF9D01'
             color='#FFF2DE'
+            backgroundColorHover='#FFF2DE'
+            colorHover='#FF9D01'
+            borderHover='2px solid #FF9D01'
+            onClick={() => atualizarPerfil()}
           />
           )}
-
 
           { editar && (
             <div style={{marginRight: 18}}>
@@ -129,6 +175,9 @@ export const EditarPerfil = () => {
                 backgroundColor='transparent'
                 color='#FF9D01'
                 border='2px solid #FF9D01'
+                backgroundColorHover='#FF9D01'
+                colorHover='#FFF2DE'
+                borderHover='2px solid #FF9D01'
                 onClick={() => setEditar(false)}
               />
           </div>

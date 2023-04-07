@@ -6,3 +6,7 @@ button {
     height: 46px;
     text-align: center;
 }
+
+button:hover {
+    transition: 0.25s;
+}

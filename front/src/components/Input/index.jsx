@@ -10,6 +10,7 @@ export const Input = (props) => {
                 value={props?.value}
                 onChange={props?.onChange}
                 disabled={props.disabled}
+                type={props.senha ? 'password' : 'text'}
             >{props?.text}</input>
             <p className="ErrorMessage">{props.error}</p>
        </div>
