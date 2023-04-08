@@ -4,7 +4,6 @@ import { Logo } from "../../assets";
 import './style.css';
 
 export const PopUp = (props) => {
-  console.log('opo', props.open);
 return (
     <div>
       <Modal

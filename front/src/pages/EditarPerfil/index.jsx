@@ -26,7 +26,7 @@ export const EditarPerfil = () => {
   const handleCloseDeletar = () => setOpenDeletar(false);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/usuario/1')
+    axios.get(`http://localhost:3001/usuario/${localStorage.getItem('@BuchoCheio:id')}`)
       .then((response) => {
         setNome(response.data.nome);
         setCPF(cpfMask(response.data.cpf));
@@ -41,7 +41,7 @@ export const EditarPerfil = () => {
   }, [])
 
   const atualizarPerfil = () => {
-    axios.put('http://localhost:3001/usuario/1', {
+    axios.put(`http://localhost:3001${localStorage.getItem('@BuchoCheio:id')}`, {
       nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
     }).then(() => {
       setEditar(false);
@@ -50,7 +50,7 @@ export const EditarPerfil = () => {
   }
 
   const deletarPerfil = () => {
-    axios.delete('http://localhost:3001/usuario/1', {
+    axios.delete(`http://localhost:3001${localStorage.getItem('@BuchoCheio:id')}`, {
       nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
     }).then(() => {
       setEditar(false);
