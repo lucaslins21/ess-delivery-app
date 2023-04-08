@@ -1,5 +1,5 @@
 import React from "react";
-import { IconPerfil, Logo, IconBag } from "../../assets";
+import { IconPerfil, Logo, IconBag, IconLogout } from "../../assets";
 import './style.css';
 
 export const Navbar = (props) => {
@@ -16,6 +16,11 @@ export const Navbar = (props) => {
             <p>0 itens</p>
           </div>
         </div>
+        <IconLogout style={{width: 30, height: 30, cursor: 'pointer' , marginLeft:20}} onClick={() => {
+          localStorage.removeItem('@BuchoCheio:id');
+          window.location.replace('/');
+          }} 
+        />
       </div>
     </div>
   );

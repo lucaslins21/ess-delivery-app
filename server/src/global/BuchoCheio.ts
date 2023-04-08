@@ -82,6 +82,36 @@ export default class BuchoCheio {
         }
     }
 
+
+    static async findByEmail<Type>(entity: EntityTarget<Type>, email: string): Promise<FindalbeDatabaseValue<Type>> {
+        try {
+            const entityEmail = String(email);
+            const entityRepository = connection.getRepository(entity);
+            const valueFound = await entityRepository.find({
+                where: {
+                    email: entityEmail,
+                    
+                }
+            })
+
+            if(valueFound.length === 0) throw new Error('Nao foi encontrado')
+            
+            Terminal.show(Message.VALUE_WAS_FOUND);
+            return {
+                value: valueFound[0],
+                message: Message.VALUE_WAS_FOUND
+            }; 
+        } catch(error){
+            Terminal.show(Message.VALUE_WAS_NOT_FOUND);
+            return {
+                value: undefined,
+                message: Message.VALUE_WAS_NOT_FOUND
+            };
+        }
+    }
+
+
+
     static async deleteValue<Type>(entity: EntityTarget<Type>, object: Type): Promise<RemoveableDatabase>  {
         try {
             const entityRepository = connection.getRepository(entity);
