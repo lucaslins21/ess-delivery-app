@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Botao } from "../../components/Botao";
 import { Input } from '../../components/Input';
 import { PopUp } from '../../components/PopUp';
+import { Navbar } from "../../components/Navbar";
 import axios from 'axios';
 import './style.css';
 import { cpfMask, emailMask, phoneMask, senhaMask, textMask } from "../../utils/mask";
@@ -25,12 +26,12 @@ export const EditarPerfil = () => {
   const handleCloseDeletar = () => setOpenDeletar(false);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/usuario/2')
+    axios.get('http://localhost:3001/usuario/1')
       .then((response) => {
         setNome(response.data.nome);
-        setCPF(response.data.cpf);
+        setCPF(cpfMask(response.data.cpf));
         setEmail(response.data.email);
-        setTelefone(response.data.telefone);
+        setTelefone(phoneMask(response.data.telefone));
         setSenha(response.data.senha);
         setConfirmarSenha(response.data.senha);
         setEndereco(response.data.endereco);
@@ -40,7 +41,7 @@ export const EditarPerfil = () => {
   }, [])
 
   const atualizarPerfil = () => {
-    axios.put('http://localhost:3001/usuario/2', {
+    axios.put('http://localhost:3001/usuario/1', {
       nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
     }).then(() => {
       setEditar(false);
@@ -49,7 +50,7 @@ export const EditarPerfil = () => {
   }
 
   const deletarPerfil = () => {
-    axios.delete('http://localhost:3001/usuario/2', {
+    axios.delete('http://localhost:3001/usuario/1', {
       nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
     }).then(() => {
       setEditar(false);
@@ -68,171 +69,172 @@ export const EditarPerfil = () => {
     }
   }
 
-  console.log(openDeletar);
-
   return (
-    <div className="Page">
-      <div className="ContainerForm">
-        <div className="ContainerTitulo">
-          <div style={{width: 200}}></div>
-          <h1>PERFIL</h1>
-          <Botao 
-            width={150}
-            text='EDITAR'
-            backgroundColor='#FF9D01'
-            color='#FFF2DE'
-            onClick={() => setEditar(true)}
-            backgroundColorHover='#FFF2DE'
-            colorHover='#FF9D01'
-            borderHover='2px solid #FF9D01'
-          />
-        </div>
-        <PopUp 
-          titulo='DESEJA SALVAR?'
-          open={openSalvar}
-          handleClose={handleCloseSalvar}
-          onClickButtonSim={() => atualizarPerfil()}
-          onClickButtonNao={() => handleCloseSalvar()}
-        />
-
-        <PopUp 
-          titulo='DESEJA REALMENTE APAGAR??'
-          open={openDeletar}
-          handleClose={handleCloseDeletar}
-          onClickButtonSim={() => deletarPerfil()}
-          onClickButtonNao={() => handleCloseDeletar()}
-        />
-
-        <div className="Inline">
-          <Input
-            titulo='Nome'
-            placeholder='Nome'
-            value={nome}
-            onChange={(e) => setNome(textMask(e.target.value))}
-            error={nome === '' || nome.length < 3? 'Insira seu nome' : ''}
-          />
-
-          <Input
-            titulo='CPF'
-            placeholder='CPF'
-            value={cpf}
-            onChange={(e) => setCPF(cpfMask(e.target.value))}
-            error={cpf === '' || cpf.length < 14? 'Insira seu CPF' : ''}
-          />
-        </div>
-
-        <div className="Inline">
-          <Input
-            titulo='Telefone'
-            placeholder='Telefone'
-            value={telefone}
-            onChange={(e) => setTelefone(phoneMask(e.target.value))}
-            error={telefone === '' || telefone.length < 15? 'Insira seu telefone' : ''}
-          />
-
-          <Input
-            titulo='Email'
-            placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(emailMask(e.target.value))}
-            error={email === '' || email.length < 3? 'Insira seu email' : ''}
-          />
-        </div>
-
-        <div className="Inline">
-          <Input
-            titulo='Senha'
-            placeholder='Senha'
-            value={senha}
-            senha
-            onChange={(e) => setSenha(senhaMask(e.target.value))}
-            error={senha === '' || confirmarSenha !== senha ? 'Insira sua senha' : ''}
-          />
-
-          <Input
-            titulo='Confirmar Senha'
-            placeholder='Confirmar Senha'
-            senha
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(senhaMask(e.target.value))}
-            error={confirmarSenha === '' || confirmarSenha !== senha ? 'Insira sua senha' : ''}
-          />
-        </div>
-
-        <div className="Inline">
-          <Input
-            titulo='Endereço'
-            placeholder='Endereço'
-            value={endereco}
-            onChange={(e) => setEndereco(textMask(e.target.value))}
-            error={endereco === '' ? 'Insira seu endereço' : ''}
-          />
-
-          <Input
-            titulo='Complemento'
-            placeholder='Complemento'
-            value={complemento}
-            onChange={(e) => setComplemento(textMask(e.target.value))}
-            error={complemento === '' ? 'Insira seu complemento' : ''}
-          />
-
-          <Input
-            titulo='Ponto de Referência'
-            placeholder='Ponto de Referência'
-            value={pontoRef}
-            onChange={(e) => setPontoRef(textMask(e.target.value))}
-          />
-        </div>
-        
-        <div className="ContainerButtonDeletar">
-          <div style={{marginLeft: 18}}>
+    <>
+      <Navbar />
+      <div className="Page">
+        <div className="ContainerForm">
+          <div className="ContainerTitulo">
+            <div style={{width: 200}}></div>
+            <h1>PERFIL</h1>
             <Botao 
               width={150}
-              text='Deletar conta'
-              backgroundColor='#DD1C1A'
+              text='EDITAR'
+              backgroundColor='#FF9D01'
               color='#FFF2DE'
+              onClick={() => setEditar(true)}
               backgroundColorHover='#FFF2DE'
-              colorHover='#DD1C1A'
-              borderHover='2px solid #DD1C1A'
-              onClick={() => handleOpenDeletar()}
+              colorHover='#FF9D01'
+              borderHover='2px solid #FF9D01'
+            />
+          </div>
+          <PopUp 
+            titulo='DESEJA SALVAR?'
+            open={openSalvar}
+            handleClose={handleCloseSalvar}
+            onClickButtonSim={() => atualizarPerfil()}
+            onClickButtonNao={() => handleCloseSalvar()}
+          />
+
+          <PopUp 
+            titulo='DESEJA REALMENTE APAGAR??'
+            open={openDeletar}
+            handleClose={handleCloseDeletar}
+            onClickButtonSim={() => deletarPerfil()}
+            onClickButtonNao={() => handleCloseDeletar()}
+          />
+
+          <div className="Inline">
+            <Input
+              titulo='Nome'
+              placeholder='Nome'
+              value={nome}
+              onChange={(e) => setNome(textMask(e.target.value))}
+              error={nome === '' || nome.length < 3? 'Insira seu nome' : ''}
+            />
+
+            <Input
+              titulo='CPF'
+              placeholder='CPF'
+              value={cpf}
+              onChange={(e) => setCPF(cpfMask(e.target.value))}
+              error={cpf === '' || cpf.length < 14? 'Insira seu CPF' : ''}
             />
           </div>
 
-          { editar && (
-            <Botao 
-            width={150}
-            text='Salvar'
-            backgroundColor='#FF9D01'
-            color='#FFF2DE'
-            backgroundColorHover='#FFF2DE'
-            colorHover='#FF9D01'
-            borderHover='2px solid #FF9D01'
-            onClick={() => {
-              const check = checkFields();
-              if(check){
-                handleOpenSalvar();
-              }
-            }}
-          />
-          )}
+          <div className="Inline">
+            <Input
+              titulo='Telefone'
+              placeholder='Telefone'
+              value={telefone}
+              onChange={(e) => setTelefone(phoneMask(e.target.value))}
+              error={telefone === '' || telefone.length < 15? 'Insira seu telefone' : ''}
+            />
 
-          { editar && (
-            <div style={{marginRight: 18}}>
+            <Input
+              titulo='Email'
+              placeholder='Email'
+              value={email}
+              onChange={(e) => setEmail(emailMask(e.target.value))}
+              error={email === '' || email.length < 3? 'Insira seu email' : ''}
+            />
+          </div>
+
+          <div className="Inline">
+            <Input
+              titulo='Senha'
+              placeholder='Senha'
+              value={senha}
+              senha
+              onChange={(e) => setSenha(senhaMask(e.target.value))}
+              error={senha === '' || confirmarSenha !== senha ? 'Insira sua senha' : ''}
+            />
+
+            <Input
+              titulo='Confirmar Senha'
+              placeholder='Confirmar Senha'
+              senha
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(senhaMask(e.target.value))}
+              error={confirmarSenha === '' || confirmarSenha !== senha ? 'Insira sua senha' : ''}
+            />
+          </div>
+
+          <div className="Inline">
+            <Input
+              titulo='Endereço'
+              placeholder='Endereço'
+              value={endereco}
+              onChange={(e) => setEndereco(textMask(e.target.value))}
+              error={endereco === '' ? 'Insira seu endereço' : ''}
+            />
+
+            <Input
+              titulo='Complemento'
+              placeholder='Complemento'
+              value={complemento}
+              onChange={(e) => setComplemento(textMask(e.target.value))}
+              error={complemento === '' ? 'Insira seu complemento' : ''}
+            />
+
+            <Input
+              titulo='Ponto de Referência'
+              placeholder='Ponto de Referência'
+              value={pontoRef}
+              onChange={(e) => setPontoRef(textMask(e.target.value))}
+            />
+          </div>
+          
+          <div className="ContainerButtonDeletar">
+            <div style={{marginLeft: 18}}>
               <Botao 
                 width={150}
-                text='Cancelar'
-                backgroundColor='transparent'
-                color='#FF9D01'
-                border='2px solid #FF9D01'
-                backgroundColorHover='#FF9D01'
-                colorHover='#FFF2DE'
-                borderHover='2px solid #FF9D01'
-                onClick={() => setEditar(false)}
+                text='Deletar conta'
+                backgroundColor='#DD1C1A'
+                color='#FFF2DE'
+                backgroundColorHover='#FFF2DE'
+                colorHover='#DD1C1A'
+                borderHover='2px solid #DD1C1A'
+                onClick={() => handleOpenDeletar()}
               />
+            </div>
+
+            { editar && (
+              <Botao 
+              width={150}
+              text='Salvar'
+              backgroundColor='#FF9D01'
+              color='#FFF2DE'
+              backgroundColorHover='#FFF2DE'
+              colorHover='#FF9D01'
+              borderHover='2px solid #FF9D01'
+              onClick={() => {
+                const check = checkFields();
+                if(check){
+                  handleOpenSalvar();
+                }
+              }}
+            />
+            )}
+
+            { editar && (
+              <div style={{marginRight: 18}}>
+                <Botao 
+                  width={150}
+                  text='Cancelar'
+                  backgroundColor='transparent'
+                  color='#FF9D01'
+                  border='2px solid #FF9D01'
+                  backgroundColorHover='#FF9D01'
+                  colorHover='#FFF2DE'
+                  borderHover='2px solid #FF9D01'
+                  onClick={() => setEditar(false)}
+                />
+            </div>
+            )}
           </div>
-          )}
         </div>
       </div>
-    </div>
+    </>
   )
 }
