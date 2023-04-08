@@ -63,7 +63,6 @@ export default class UsuarioController implements Crud {
       
         // Busca o usuário pelo email
         const usuario = await BuchoCheio.findByEmail(Usuario, email); 
-        console.log(usuario,email,senha);
         // Verifica se o usuário foi encontrado
         if (!usuario) {
           return response.status(401).send({ mensagem: 'Usuário não encontrado.' });
