@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Botao } from "../../components/Botao";
 import { Input } from '../../components/Input';
+import { PopUp } from '../../components/PopUp';
 import axios from 'axios';
 import './style.css';
+import { cpfMask, emailMask, phoneMask, senhaMask, textMask } from "../../utils/mask";
 
 export const EditarPerfil = () => {
   const [nome, setNome] = useState('');
@@ -15,6 +17,12 @@ export const EditarPerfil = () => {
   const [complemento, setComplemento] = useState('');
   const [pontoRef, setPontoRef] = useState('');
   const [editar, setEditar] = useState(false);
+  const [openSalvar, setOpenSalvar] = useState(false);
+  const [openDeletar, setOpenDeletar] = useState(false);
+  const handleOpenSalvar = () => setOpenSalvar(true);
+  const handleCloseSalvar = () => setOpenSalvar(false);
+  const handleOpenDeletar = () => setOpenDeletar(true);
+  const handleCloseDeletar = () => setOpenDeletar(false);
 
   useEffect(() => {
     axios.get('http://localhost:3001/usuario/2')
@@ -34,20 +42,33 @@ export const EditarPerfil = () => {
   const atualizarPerfil = () => {
     axios.put('http://localhost:3001/usuario/2', {
       nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
-    }).then((response) => {
-      console.log(response);
+    }).then(() => {
       setEditar(false);
+      window.location.reload();
     })
   }
 
   const deletarPerfil = () => {
     axios.delete('http://localhost:3001/usuario/2', {
       nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
-    }).then((response) => {
-      console.log(response);
+    }).then(() => {
       setEditar(false);
+      window.location.replace("/");
     })
   }
+
+  const checkFields = () => {
+    if(nome === '' || cpf === '' || email === '' 
+    || telefone === '' || senha === '' || confirmarSenha === '' 
+    || endereco === '' || complemento === '') {
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+
+  console.log(openDeletar);
 
   return (
     <div className="Page">
@@ -66,20 +87,37 @@ export const EditarPerfil = () => {
             borderHover='2px solid #FF9D01'
           />
         </div>
+        <PopUp 
+          titulo='DESEJA SALVAR?'
+          open={openSalvar}
+          handleClose={handleCloseSalvar}
+          onClickButtonSim={() => atualizarPerfil()}
+          onClickButtonNao={() => handleCloseSalvar()}
+        />
+
+        <PopUp 
+          titulo='DESEJA REALMENTE APAGAR??'
+          open={openDeletar}
+          handleClose={handleCloseDeletar}
+          onClickButtonSim={() => deletarPerfil()}
+          onClickButtonNao={() => handleCloseDeletar()}
+        />
 
         <div className="Inline">
           <Input
             titulo='Nome'
             placeholder='Nome'
             value={nome}
-            onChange={(e) => setNome(e.target.value)}
+            onChange={(e) => setNome(textMask(e.target.value))}
+            error={nome === '' || nome.length < 3? 'Insira seu nome' : ''}
           />
 
           <Input
             titulo='CPF'
             placeholder='CPF'
             value={cpf}
-            onChange={(e) => setCPF(e.target.value)}
+            onChange={(e) => setCPF(cpfMask(e.target.value))}
+            error={cpf === '' || cpf.length < 14? 'Insira seu CPF' : ''}
           />
         </div>
 
@@ -88,14 +126,16 @@ export const EditarPerfil = () => {
             titulo='Telefone'
             placeholder='Telefone'
             value={telefone}
-            onChange={(e) => setTelefone(e.target.value)}
+            onChange={(e) => setTelefone(phoneMask(e.target.value))}
+            error={telefone === '' || telefone.length < 15? 'Insira seu telefone' : ''}
           />
 
           <Input
             titulo='Email'
             placeholder='Email'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(emailMask(e.target.value))}
+            error={email === '' || email.length < 3? 'Insira seu email' : ''}
           />
         </div>
 
@@ -105,7 +145,8 @@ export const EditarPerfil = () => {
             placeholder='Senha'
             value={senha}
             senha
-            onChange={(e) => setSenha(e.target.value)}
+            onChange={(e) => setSenha(senhaMask(e.target.value))}
+            error={senha === '' || confirmarSenha !== senha ? 'Insira sua senha' : ''}
           />
 
           <Input
@@ -113,7 +154,8 @@ export const EditarPerfil = () => {
             placeholder='Confirmar Senha'
             senha
             value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
+            onChange={(e) => setConfirmarSenha(senhaMask(e.target.value))}
+            error={confirmarSenha === '' || confirmarSenha !== senha ? 'Insira sua senha' : ''}
           />
         </div>
 
@@ -122,21 +164,23 @@ export const EditarPerfil = () => {
             titulo='Endereço'
             placeholder='Endereço'
             value={endereco}
-            onChange={(e) => setEndereco(e.target.value)}
+            onChange={(e) => setEndereco(textMask(e.target.value))}
+            error={endereco === '' ? 'Insira seu endereço' : ''}
           />
 
           <Input
             titulo='Complemento'
             placeholder='Complemento'
             value={complemento}
-            onChange={(e) => setComplemento(e.target.value)}
+            onChange={(e) => setComplemento(textMask(e.target.value))}
+            error={complemento === '' ? 'Insira seu complemento' : ''}
           />
 
           <Input
             titulo='Ponto de Referência'
             placeholder='Ponto de Referência'
             value={pontoRef}
-            onChange={(e) => setPontoRef(e.target.value)}
+            onChange={(e) => setPontoRef(textMask(e.target.value))}
           />
         </div>
         
@@ -150,7 +194,7 @@ export const EditarPerfil = () => {
               backgroundColorHover='#FFF2DE'
               colorHover='#DD1C1A'
               borderHover='2px solid #DD1C1A'
-              onClick={() => deletarPerfil()}
+              onClick={() => handleOpenDeletar()}
             />
           </div>
 
@@ -163,7 +207,12 @@ export const EditarPerfil = () => {
             backgroundColorHover='#FFF2DE'
             colorHover='#FF9D01'
             borderHover='2px solid #FF9D01'
-            onClick={() => atualizarPerfil()}
+            onClick={() => {
+              const check = checkFields();
+              if(check){
+                handleOpenSalvar();
+              }
+            }}
           />
           )}
 
