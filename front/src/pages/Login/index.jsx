@@ -3,6 +3,7 @@ import { Botao } from "../../components/Botao";
 import { Input } from '../../components/Input';
 import { Logo } from "../../assets";
 import { Icone } from "../../assets";
+
 import axios from 'axios';
 import './style.css';
 
@@ -18,7 +19,7 @@ export const Login = () => {
           });
           if (response.data.id) {
             localStorage.setItem('@BuchoCheio:id',response.data.id);
-           return window.location.replace("/perfil");
+           return window.location.replace("/");
           } else {
             alert("Login ou senha inválidos");
           }
@@ -29,7 +30,7 @@ export const Login = () => {
 
     const verificationAdmin = ()=>{
         if (email === "admin@gmail.com" && senha === "admin123"){
-            return window.location.replace("/perfil");
+            return window.location.replace("/");
         }else{
             return handleLogin();
         }    
@@ -90,6 +91,20 @@ export const Login = () => {
                             if(check){
                                 verificationAdmin();
                             }
+                          }}
+                    />
+                </div>
+                <div className="botao2">
+                    <Botao 
+                        width={'100%'}
+                        text='CADASTRE-SE'
+                        backgroundColor='#FF9D01'
+                        color='#FFF2DE'
+                        backgroundColorHover='#FFF2DE'
+                        colorHover='#FF9D01'
+                        borderHover='2px solid #FF9D01'
+                        onClick={() => {
+                          return window.location.replace("/");
                           }}
                     />
                 </div>
