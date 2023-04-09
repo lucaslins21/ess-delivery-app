@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Botao } from "../../components/Botao";
 import { Input } from '../../components/Input';
 import { Logo } from "../../assets";
@@ -9,20 +9,48 @@ import './style.css';
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+    const handleLogin = async () => {
+        try {
+          const response = await axios.post("http://localhost:3001/login", {
+            email,
+            senha,
+          });
+          if (response.data.id) {
+            localStorage.setItem('@BuchoCheio:id',response.data.id);
+           return window.location.replace("/perfil");
+          } else {
+            alert("Login ou senha inválidos");
+          }
+        } catch (error) {
+          alert("Erro ao fazer login. Tente novamente mais tarde.");
+        }
+      };
+
     const verificationAdmin = ()=>{
-            if (email === "admin@gmail.com" && senha === "admin123"){
-                return window.location.replace("/perfil");
-            }else{
-                
-                return false;
-            }    
+        if (email === "admin@gmail.com" && senha === "admin123"){
+            return window.location.replace("/perfil");
+        }else{
+            return handleLogin();
+        }    
     } 
+
+    const checkFields = () => {
+        if( (email === ''|| email.length<3)|| senha === '') {
+          return false;
+        }
+        else{
+          return true;
+        }
+      }
+    
+
     return (
         <div className="containerPage">
             <div className="form">
                 <div className="titulo">  
                     <div className="icone">
-                    <img src={Icone} alt="icone" width={50} style={{marginRight: 80}}/>
+                    <Icone style={{ width: 45 , marginRight: 25 }}/>
                     </div>
                     <div className="">
                         <h1>Login</h1>
@@ -35,6 +63,7 @@ export const Login = () => {
                         placeholder='e-mail'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        error={email === '' || email.length < 3? 'Insira seu email' : ''}
                     />
                 </div>
                 <div className="senha">
@@ -44,18 +73,24 @@ export const Login = () => {
                         value={senha}
                         senha
                         onChange={(e) => setSenha(e.target.value)}
+                        error={senha === '' ? 'Insira sua senha' : ''}
                     />
                 </div>
                 <div className="botao">
                     <Botao 
-                        width={483}
+                        width={'100%'}
                         text='ENTRAR'
                         backgroundColor='#FF9D01'
                         color='#FFF2DE'
                         backgroundColorHover='#FFF2DE'
                         colorHover='#FF9D01'
                         borderHover='2px solid #FF9D01'
-                        onClick={() => verificationAdmin()}
+                        onClick={() => {
+                            const check = checkFields();
+                            if(check){
+                                verificationAdmin();
+                            }
+                          }}
                     />
                 </div>
             </div>

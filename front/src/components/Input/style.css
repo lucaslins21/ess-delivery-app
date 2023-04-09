@@ -33,4 +33,5 @@ input:focus {
 
 .ErrorMessage{
     color: #F90300;
+    margin: 0;
 }
