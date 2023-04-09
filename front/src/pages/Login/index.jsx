@@ -31,7 +31,10 @@ export const Login = () => {
     const verificationAdmin = ()=>{
         if (email === "admin@gmail.com" && senha === "admin123"){
             return window.location.replace("/");
-        }else{
+        }else if(email === "admin@gmail.com" && senha !== "admin123"){
+            alert("Login ou senha inválidos");
+        }
+        else{
             return handleLogin();
         }    
     } 
