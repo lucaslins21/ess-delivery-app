@@ -2,40 +2,27 @@
 
 ### Dependências
 
-- Angular
+- React
 - Node 
-- npm
+- yarn
+- Docker
 
-### Instalando dependências 
+### Instalando dependências
 ```
-sudo apt install npm
-sudo npm install -g @angular/cli
-```
-
-### Modificando a versão do Node
-```
-sudo npm install -g n
-n 14.15
-```
-
-### Iniciando o projeto
-```
-cd web-app
-sudo npm install
+cd front
+yarn install
 cd ..
 cd server
-sudo npm install
+sudo yarn install
 ```
 ### Rodando o projeto
 Iniciar o servidor
 ```
 cd server
-npm start
+docker-compose up
 ```
 Iniciando o frontend
 ```
-cd web-app
-sudo npm install 
-cd src
-ng serve
+cd front
+yarn start
 ```
