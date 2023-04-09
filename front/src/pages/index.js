@@ -1,5 +1,5 @@
-import { Home } from './Home';
+//import { Home } from './Cadastro';
 import { Login } from './Login';
 import { EditarPerfil } from './EditarPerfil';
 
-export { Home, EditarPerfil, Login };
+export { EditarPerfil, Login /*Home*/ };
