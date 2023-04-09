@@ -13,6 +13,7 @@ export const Login = () => {
             if (email === "admin@gmail.com" && senha === "admin123"){
                 return window.location.replace("/perfil");
             }else{
+                
                 return false;
             }    
     } 
