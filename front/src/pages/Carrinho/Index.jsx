@@ -2,12 +2,10 @@ import React from 'react';
 import { Navbar } from '../../components/Navbar';
 
 
-const Index = () => {
+export const Carrinho = () => {
     return (
         <>
             <Navbar></Navbar>
         </>
     );
 };
-
-export default Index;
