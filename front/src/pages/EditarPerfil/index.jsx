@@ -98,7 +98,7 @@ export const EditarPerfil = () => {
           />
 
           <PopUp 
-            titulo='DESEJA REALMENTE APAGAR?'
+            titulo='Você deseja excluir a sua conta ?'
             open={openDeletar}
             handleClose={handleCloseDeletar}
             onClickButtonSim={() => deletarPerfil()}
