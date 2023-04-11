@@ -10,7 +10,7 @@ export const Navbar = (props) => {
       <div className="divIcons">
         <IconPerfil style={{width: 30, height: 30, cursor: 'pointer' }} onClick={() => window.location.replace('/perfil')}/>
         <div className="divBag">
-          <IconBag style={{width: 30, height: 30, cursor: 'pointer' }}/>
+          <IconBag style={{width: 30, height: 30, cursor: 'pointer' }} onClick={()=>window.location.replace('/carrinho')}/>
           <div className="divNames">
             <p>R$ 0,00</p>
             <p>0 itens</p>

@@ -1,5 +1,5 @@
 //import { Home } from './Cadastro';
 import { Login } from './Login';
 import { EditarPerfil } from './EditarPerfil';
-
-export { EditarPerfil, Login /*Home*/ };
+import { Carrinho } from './Carrinho';
+export { EditarPerfil, Login, Carrinho};
