@@ -1,4 +1,4 @@
-export interface AppointmentProps {
+export interface EditarPerfilProps {
     id: number;
     nome: string;
     cpf: string;
@@ -11,8 +11,8 @@ export interface AppointmentProps {
     pontoRef: string;
 }
 
-export class Appointment {
-    private props: AppointmentProps;
+export class EditarPerfil {
+    private props: EditarPerfilProps;
 
     get usuario() {
         return this.props;
@@ -58,14 +58,8 @@ export class Appointment {
         return this.props.pontoRef;
     }
 
-    constructor(props: AppointmentProps) {
+    constructor(props: EditarPerfilProps) {
         const { nome, email, telefone, senha, endereco, complemento, pontoRef, confirmarSenha, cpf } = props;
-
-        if (!nome || !email || !telefone || !senha || !endereco || !complemento) {
-            throw new Error('Os campos não pode ser vazio');
-        } else if (senha !== confirmarSenha) {
-            throw new Error('As senhas não são iguais');
-        } 
 
         this.props = props;
     }
