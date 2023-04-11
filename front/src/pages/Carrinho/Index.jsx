@@ -6,14 +6,18 @@ import { Navbar } from '../../components/Navbar';
 
 
 
-const produto = {
+const hambuguer = {
     nome: 'produto',
     preco: 'preco',
-    quantidade:1
+    quantidade: 'quantidade'
 }; 
+
 
 export const Carrinho = () => {
     const [car,setCar] = useState([]);
+    const removerItem = () => {
+        //removerItem
+    }
   return (
    <>
     <Navbar></Navbar>
