@@ -17,6 +17,13 @@
     align-items: center;
     margin-top: 8px;
 }
+.containerBotaoOK{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+    
 
 .title{
     font-family: 'Hind Guntur', sans-serif;

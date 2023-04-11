@@ -18,7 +18,19 @@ return (
           </div>
           <p className='title'>{props.titulo}</p>
 
-          <div className='container-buttons'>
+          {props.aparecebotaook? <div className='containerBotaoOK'><Botao 
+              width={150}
+              text='OK'
+              backgroundColor='#FF9D01'
+              color='#FFFFFF'
+              backgroundColorHover='#FFFFFF'
+              colorHover='#FF9D01'
+              borderHover='2px solid #FF9D01'
+              onClick={props.onClickButtonSim}
+              border='2px solid #FF9D01'
+            />
+            </div>
+            :<div className='container-buttons'>
             <Botao 
               width={150}
               text='SIM'
@@ -41,7 +53,7 @@ return (
               borderHover='2px solid #FF9D01'
               onClick={props.onClickButtonNao}
             />
-          </div>
+          </div>}
         </Box>
       </Modal>
     </div>
