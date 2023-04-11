@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.scss'
 import Table from './Table';
 import { useState } from 'react';
+import { Navbar } from '../../components/Navbar';
 
 
 const produto = {
@@ -14,9 +15,7 @@ export const Carrinho = () => {
     const [car,setCar] = useState([1]);
   return (
    <>
-    <header>
-    
-    </header>
+    <Navbar></Navbar>
       <main>
           <div className="page-title">Seu Carrinho</div>
           <div className="content">
