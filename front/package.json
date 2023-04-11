@@ -44,5 +44,8 @@
   "main": "teste",
   "repository": "http://localhost:3001/",
   "author": "gabriela",
-  "license": "na"
+  "license": "na",
+  "devDependencies": {
+    "sass": "^1.61.0"
+  }
 }
