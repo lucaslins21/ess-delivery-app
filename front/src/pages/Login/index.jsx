@@ -24,7 +24,7 @@ export const Login = () => {
             alert("Login ou senha inválidos");
           }
         } catch (error) {
-          alert("Erro ao fazer login. Tente novamente mais tarde.");
+          alert("Login ou senha inválidos");
         }
       };
 
