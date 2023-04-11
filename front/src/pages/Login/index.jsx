@@ -107,7 +107,7 @@ export const Login = () => {
                         colorHover='#FF9D01'
                         borderHover='2px solid #FF9D01'
                         onClick={() => {
-                          return window.location.replace("/");
+                          return window.location.replace("/cadastro");
                           }}
                     />
                 </div>
