@@ -24,14 +24,14 @@ export const Cadastro = () => {
 
 
   const cadastrarPerfil = () => {
-    console.log(axios.post('http://localhost:3001/usuario', {
+    axios.post('http://localhost:3001/usuario', {
       nome, cpf, email, telefone, senha, endereco, complemento, pontoRef
-    })).then((response) => {
-      //console.log(response);
-      //setEditar(false);
-      window.location.replace("/")
-     })
-    
+    }).then((response) => {
+      window.location.replace("/");
+    })
+      .catch((response) => {
+        alert(response);
+      })
   }
 
   const checkFields = () => {
@@ -68,7 +68,7 @@ export const Cadastro = () => {
               placeholder='Nome'
               value={nome}
               onChange={(e) => setNome(textMask(e.target.value))}
-              error={nome === '' || nome.length < 3? 'Insira seu nome' : ''}
+              error={nome && nome.length < 3? 'Insira seu nome' : ''}
             />
 
             <Input
@@ -76,7 +76,7 @@ export const Cadastro = () => {
               placeholder='CPF'
               value={cpf}
               onChange={(e) => setCPF(cpfMask(e.target.value))}
-              error={cpf === '' || cpf.length < 14? 'Insira seu CPF' : ''}
+              error={cpf && cpf.length < 14? 'Insira seu CPF' : ''}
             />
           </div>
 
@@ -86,7 +86,7 @@ export const Cadastro = () => {
               placeholder='Telefone'
               value={telefone}
               onChange={(e) => setTelefone(phoneMask(e.target.value))}
-              error={telefone === '' || telefone.length < 15? 'Insira seu telefone' : ''}
+              error={telefone && telefone.length < 15? 'Insira seu telefone' : ''}
             />
 
             <Input
@@ -94,7 +94,7 @@ export const Cadastro = () => {
               placeholder='Email'
               value={email}
               onChange={(e) => setEmail(emailMask(e.target.value))}
-              error={email === '' || email.length < 3? 'Insira seu email' : ''}
+              error={email && email.length < 3? 'Insira seu email' : ''}
             />
           </div>
 
@@ -105,7 +105,7 @@ export const Cadastro = () => {
               value={senha}
               senha
               onChange={(e) => setSenha(senhaMask(e.target.value))}
-              error={senha === '' || confirmarSenha !== senha ? 'Insira sua senha' : ''}
+              error={senha && confirmarSenha !== senha ? 'Insira sua senha' : ''}
             />
 
             <Input
@@ -114,7 +114,7 @@ export const Cadastro = () => {
               senha
               value={confirmarSenha}
               onChange={(e) => setConfirmarSenha(senhaMask(e.target.value))}
-              error={confirmarSenha === '' || confirmarSenha !== senha ? 'Insira sua senha' : ''}
+              error={confirmarSenha && confirmarSenha !== senha ? 'Insira sua senha' : ''}
             />
           </div>
 
