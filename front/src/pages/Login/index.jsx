@@ -24,14 +24,17 @@ export const Login = () => {
             alert("Login ou senha inválidos");
           }
         } catch (error) {
-          alert("Erro ao fazer login. Tente novamente mais tarde.");
+          alert("Login ou senha inválidos");
         }
       };
 
     const verificationAdmin = ()=>{
         if (email === "admin@gmail.com" && senha === "admin123"){
             return window.location.replace("/");
-        }else{
+        }else if(email === "admin@gmail.com" && senha !== "admin123"){
+            alert("Login ou senha inválidos");
+        }
+        else{
             return handleLogin();
         }    
     } 
@@ -104,7 +107,7 @@ export const Login = () => {
                         colorHover='#FF9D01'
                         borderHover='2px solid #FF9D01'
                         onClick={() => {
-                          return window.location.replace("/");
+                          return window.location.replace("/cadastro");
                           }}
                     />
                 </div>
