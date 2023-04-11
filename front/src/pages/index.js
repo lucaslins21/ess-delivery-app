@@ -5,5 +5,3 @@ import { Cadastro } from './Cadastro';
 import { Carrinho } from './Carrinho';
 
 export { EditarPerfil, Login, Cadastro, Carrinho};
-import { Cadastro } from './Cadastro'
-
