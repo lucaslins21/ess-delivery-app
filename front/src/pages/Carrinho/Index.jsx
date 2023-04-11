@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Navbar } from '../../components/Navbar';
 
 
+
 const produto = {
     nome: 'produto',
     preco: 'preco',
@@ -12,7 +13,7 @@ const produto = {
 }; 
 
 export const Carrinho = () => {
-    const [car,setCar] = useState([1]);
+    const [car,setCar] = useState([]);
   return (
    <>
     <Navbar></Navbar>
@@ -34,7 +35,11 @@ export const Carrinho = () => {
                         {car.map((item) => (<Table></Table>))}
                         {car.length === 0 && (
                             <tr>
-                                <td colSpan={'5'}>Carrinho de compras vazio. Buscar Imagem e botão.</td>
+                                <td colSpan={'5'}>Carrinho de compras vazio!
+                                    <button className='botaoVazio' onClick={() => {return window.location.replace('/perfil')}}>Escolha seu Hamburger
+                                    </button>
+                                </td>
+
                             </tr>
                         ) }
                       </tbody>

@@ -91,6 +91,24 @@ table{
     }
    // background: blueviolet;  
 }
+.botaoVazio{
+        border: 0;
+        color: white;
+        padding: 15px 0;
+        background-color: #FF9D01;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 50%;
+        font-size: 16px;
+        
+
+        &:hover{
+            background: #ddd;
+            color: #FF9D01;
+            border-color: #222;
+        }
+}
 .product {
    // background: orange;
     display: flex;
