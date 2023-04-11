@@ -11,6 +11,8 @@ export const PublicRoutes = () => (
       <Route path="/perfil" element={<EditarPerfil />} />
       <Route path="/navbar" element={<Navbar />} />
       <Route path="/" element={<Login />} />
+      <Route path="/cadastro" element={<Cadastro />} />
+      <Route path="/carrinho" element={<Carrinho/>}/>
     </Routes>
   </BrowserRouter>
 );

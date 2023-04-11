@@ -40,11 +40,6 @@
       "last 1 safari version"
     ]
   },
-  "description": "aplicativo de delivery",
-  "main": "teste",
-  "repository": "http://localhost:3001/",
-  "author": "gabriela",
-  "license": "na",
   "devDependencies": {
     "sass": "^1.61.0"
   }
