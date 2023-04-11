@@ -24,6 +24,7 @@ export const EditarPerfil = () => {
   const handleCloseSalvar = () => setOpenSalvar(false);
   const handleOpenDeletar = () => setOpenDeletar(true);
   const handleCloseDeletar = () => setOpenDeletar(false);
+  const regexEmail = /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*/
 
   useEffect(() => {
     axios.get(`http://localhost:3001/usuario/${Number(localStorage.getItem('@BuchoCheio:id'))}`)
@@ -61,7 +62,7 @@ export const EditarPerfil = () => {
   const checkFields = () => {
     if(nome === '' || cpf === '' || email === '' 
     || telefone === '' || senha === '' || confirmarSenha === '' 
-    || endereco === '' || complemento === '') {
+    || endereco === '' || complemento === '' || !regexEmail.test(email)) {
       return false;
     }
     else{
@@ -136,7 +137,7 @@ export const EditarPerfil = () => {
               placeholder='Email'
               value={email}
               onChange={(e) => setEmail(emailMask(e.target.value))}
-              error={email === '' || email.length < 3? 'Insira seu email' : ''}
+              error={email === '' || email.length < 3 || !regexEmail.test(email)? 'Insira seu email' : ''}
             />
           </div>
 
