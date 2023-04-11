@@ -1,7 +1,7 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "buchocheio",
+  "version": "0.2.2.2",
+  "private": null,
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -39,5 +39,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "aplicativo de delivery",
+  "main": "teste",
+  "repository": "http://localhost:3001/",
+  "author": "gabriela",
+  "license": "na"
 }
