@@ -3,6 +3,7 @@ import './styles.scss'
 import Table from './Table';
 import { useState } from 'react';
 import { Navbar } from '../../components/Navbar';
+import {PopUp} from '../../components/PopUp';
 
 
 
@@ -14,9 +15,16 @@ const hambuguer = {
 
 
 export const Carrinho = () => {
-    const [car,setCar] = useState([]);
+    const [car,setCar] = useState([1]);
+    const [openFinalizar,setOpenFinalizar] = useState(false);
+
     const removerItem = () => {
         //removerItem
+    }
+    const endPedido = () => setOpenFinalizar(true);
+    const endlessPedido = () => setOpenFinalizar(false);
+    const finalizarPedido = () =>{
+        return window.location.replace('/home');
     }
   return (
    <>
@@ -24,6 +32,14 @@ export const Carrinho = () => {
       <main>
           <div className="page-title">Seu Carrinho</div>
           <div className="content">
+            <PopUp
+                titulo = 'Sua pedido foi realizado com sucesso!'
+                open={openFinalizar}
+                handleClose={endlessPedido}
+                aparecebotaook
+                onClickButtonSim={()=>finalizarPedido()}
+                onClickButtonNao={()=>endlessPedido()}
+            />
               <section>
                   <table>
                       <thead>
@@ -36,11 +52,11 @@ export const Carrinho = () => {
                           </tr>
                       </thead>
                       <tbody>
-                        {car.map((item) => (<Table></Table>))}
+                        {car.map((item) => (<Table data={item}></Table>))}
                         {car.length === 0 && (
                             <tr>
                                 <td colSpan={'5'}>Carrinho de compras vazio!
-                                    <button className='botaoVazio' onClick={() => {return window.location.replace('/perfil')}}>Escolha seu Hamburger
+                                    <button className='botaoVazio' onClick={() => {return window.location.replace('/home')}}>Escolha seu Hamburger
                                     </button>
                                 </td>
 
@@ -62,7 +78,7 @@ export const Carrinho = () => {
                           <span>R$ 200</span>
                       </footer>
                   </div>
-                  <button>Finalizar Compra</button>
+                  <button onClick={() => endPedido()}>Finalizar Compra</button>
               </aside>
           </div>
       </main>
