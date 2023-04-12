@@ -18,18 +18,20 @@ export const Login = () => {
             senha,
           });
           if (response.data.id) {
+            localStorage.setItem('@BuchoCheio:key',1); 
             localStorage.setItem('@BuchoCheio:id',response.data.id);
-           return window.location.replace("/");
+           return window.location.replace("/perfil");
           } else {
             alert("Login ou senha inválidos");
           }
         } catch (error) {
-          alert("Login ou senha inválidos");
+          alert("Erro ao fazer login. Tente novamente mais tarde.");
         }
       };
 
     const verificationAdmin = ()=>{
         if (email === "admin@gmail.com" && senha === "admin123"){
+            localStorage.setItem('@BuchoCheio:key',2); 
             return window.location.replace("/");
         }else if(email === "admin@gmail.com" && senha !== "admin123"){
             alert("Login ou senha inválidos");
@@ -107,7 +109,7 @@ export const Login = () => {
                         colorHover='#FF9D01'
                         borderHover='2px solid #FF9D01'
                         onClick={() => {
-                          return window.location.replace("/cadastro");
+                          return window.location.replace("/");
                           }}
                     />
                 </div>
