@@ -24,7 +24,7 @@ export const Carrinho = () => {
     const endPedido = () => setOpenFinalizar(true);
     const endlessPedido = () => setOpenFinalizar(false);
     const finalizarPedido = () =>{
-        return window.location.replace('/perfil');
+        return window.location.replace('/home');
     }
   return (
    <>
@@ -56,7 +56,7 @@ export const Carrinho = () => {
                         {car.length === 0 && (
                             <tr>
                                 <td colSpan={'5'}>Carrinho de compras vazio!
-                                    <button className='botaoVazio' onClick={() => {return window.location.replace('/perfil')}}>Escolha seu Hamburger
+                                    <button className='botaoVazio' onClick={() => {return window.location.replace('/home')}}>Escolha seu Hamburger
                                     </button>
                                 </td>
 
