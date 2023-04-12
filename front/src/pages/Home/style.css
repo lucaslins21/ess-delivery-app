@@ -17,6 +17,8 @@ html {
     font-size: 62.5%;
 }
 
+
+
 /*
 font-family: 'Montserrat', sans-serif;
 font-family: 'Open Sans', sans-serif;
@@ -41,6 +43,12 @@ h5 {
 
 a {
     text-decoration: none;
+}
+
+.Container-buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .main-content {
