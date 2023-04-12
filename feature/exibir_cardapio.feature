@@ -1,24 +1,29 @@
-Feature: exibicao do cardápio
-As a intens do cardápio
-I want to apresentar cardápio
-So that exibir itens listados
+feature: exibicao do cardápio
+as a intens do cardápio
+ i want to apresentar cardápio
+so that exibir itens listados
 
-Scenario: exibir informações dos produtos
-Given exibir informações dos produtos cadastrados
-When clicar "nome_produto" e apresentar as informações
-Then página adicionar no carrinho
+scennario: exibir informações dos produtos
+given exibir informações dos produtos cadastrados
+when clicar "Staker" e apresentar as informações
+then página adicionar no carrinho
 
-Scenario: pesquisar os produtos listados
-Given pesquisar produto "nome_produto"
-When verificar nos produtos cadastrados
-And verificar se "nome_produto" está no cardápio
-Then retorna produto encontrado
-And retorna erro se produto não encontrado
+scennario: pesquisar os produtos listados
+given pesquisar produto "Staker"
+when verificar nos produtos cadastrados
+and verificar se "Staker" está no cardápio
+then retorna produto encontrado
+and retorna erro se produto não encontrado
 
-Scenario: alterar itens do pedido
-Given exibindo informações do pedido
-When caixinha de observações
-And checkbox adicionar item + valor
-Then conclui e retorna a informações do pedido
+scennario: pesquisar os produtos listados
+given pesquisar produto "Pizza"
+when verificar nos produtos cadastrados
+and verificar se "Pizza" está no cardápio
+then retorna produto encontrado
+and retorna erro se produto não encontrado
 
-
+scennario: alterar itens do pedido
+given exibindo informações do pedido
+when caixinha de observações
+and checkbox adicionar item + valor
+then conclui e retorna a informações do pedido
