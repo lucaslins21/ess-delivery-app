@@ -19,7 +19,7 @@ export const Login = () => {
           });
           if (response.data.id) {
             localStorage.setItem('@BuchoCheio:id',response.data.id);
-           return window.location.replace("/");
+           return window.location.replace("/perfil");
           } else {
             alert("Login ou senha inválidos");
           }
@@ -30,7 +30,7 @@ export const Login = () => {
 
     const verificationAdmin = ()=>{
         if (email === "admin@gmail.com" && senha === "admin123"){
-            return window.location.replace("/");
+            return window.location.replace("/perfil");
         }else if(email === "admin@gmail.com" && senha !== "admin123"){
             alert("Login ou senha inválidos");
         }
