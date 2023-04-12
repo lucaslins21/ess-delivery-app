@@ -20,7 +20,7 @@ export const Login = () => {
           if (response.data.id) {
             localStorage.setItem('@BuchoCheio:key',1); 
             localStorage.setItem('@BuchoCheio:id',response.data.id);
-           return window.location.replace("/perfil");
+           return window.location.replace("/home");
           } else {
             alert("Login ou senha inválidos");
           }
@@ -32,7 +32,7 @@ export const Login = () => {
     const verificationAdmin = ()=>{
         if (email === "admin@gmail.com" && senha === "admin123"){
             localStorage.setItem('@BuchoCheio:key',2); 
-            return window.location.replace("/");
+            return window.location.replace("/home");
         }else if(email === "admin@gmail.com" && senha !== "admin123"){
             alert("Login ou senha inválidos");
         }
@@ -109,13 +109,13 @@ export const Login = () => {
                         colorHover='#FF9D01'
                         borderHover='2px solid #FF9D01'
                         onClick={() => {
-                          return window.location.replace("/");
+                          return window.location.replace("/cadastro");
                           }}
                     />
                 </div>
             </div>
             <div className="logo">
-                <img src={Logo} alt="Logo" width={600}/>
+                <img src={Logo} alt="Logo" style={{width: 600}}/>
             </div>
         </div>
     )

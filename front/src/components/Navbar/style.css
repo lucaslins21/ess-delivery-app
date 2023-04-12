@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 5rem;
+    height: 7rem !important;
     position: fixed;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Hind Guntur', sans-serif;

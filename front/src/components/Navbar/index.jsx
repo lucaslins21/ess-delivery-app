@@ -6,7 +6,7 @@ export const Navbar = (props) => {
 
   return (
     <div className="navbar">
-      <img src={Logo} alt="Logo" width={80} onClick={() => window.location.replace('/')} style={{cursor: 'pointer'}}/>
+      <img src={Logo} alt="Logo" onClick={() => window.location.replace('/home')} style={{cursor: 'pointer', width: 70}}/>
       <div className="divIcons">
         <IconPerfil style={{width: 30, height: 30, cursor: 'pointer' }} onClick={() => window.location.replace('/perfil')}/>
         <div className="divBag">
